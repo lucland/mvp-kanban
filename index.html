@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roadmap Hete - Quadro Kanban</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -169,6 +170,25 @@
     </main>
     
     <div class="container mx-auto px-4 pb-12">
+        <!-- NEW: Charts Section -->
+        <section class="my-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Dashboard de Progresso</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                 <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
+                    <h3 class="text-lg font-semibold text-gray-700 text-center mb-4">Progresso Geral das Tarefas</h3>
+                    <div class="h-64 flex items-center justify-center">
+                        <canvas id="statusChart"></canvas>
+                    </div>
+                </div>
+                 <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
+                    <h3 class="text-lg font-semibold text-gray-700 text-center mb-4">Distribuição de Esforço por Área</h3>
+                     <div class="h-64 flex items-center justify-center">
+                        <canvas id="typeChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Visual Roadmap Section -->
         <section class="my-12">
             <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Roadmap Visual das Fases</h2>
@@ -228,7 +248,7 @@
             </div>
         </section>
 
-        <!-- NEW: Next Steps Section -->
+        <!-- Next Steps Section -->
         <section class="my-12">
             <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Próximos Passos: Escalando a Hete Pós-MVP</h2>
             <div class="grid md:grid-cols-3 gap-8">
@@ -386,9 +406,13 @@
             if (taskToUpdate) {
                 // Cycle through statuses: 0 -> 1 -> 2 -> 0
                 taskToUpdate.status = (taskToUpdate.status + 1) % statusOrder.length;
-                // NOTE: To persist these changes, you would save the 'tasksData' object
-                // back to a server or local storage here. For this static page, we just re-render.
+                
+                // Update the JSON in the script tag to reflect the change
+                const jsonScript = document.getElementById('tasks-json');
+                jsonScript.textContent = JSON.stringify(tasksData, null, 4);
+                
                 renderBoard();
+                renderCharts(); // Re-render charts after status change
             }
         };
 
@@ -420,6 +444,93 @@
                 modal.classList.remove('flex');
             }, 200);
         };
+        
+        const renderCharts = () => {
+            const allTasks = tasksData.flatMap(sprint => sprint.tasks);
+
+            // Data for Status Chart
+            const statusCounts = allTasks.reduce((acc, task) => {
+                acc[task.status] = (acc[task.status] || 0) + 1;
+                return acc;
+            }, {});
+
+            const statusChartData = {
+                labels: statusOrder,
+                datasets: [{
+                    data: [
+                        statusCounts[0] || 0, // Pendente
+                        statusCounts[1] || 0, // Em andamento
+                        statusCounts[2] || 0  // Concluido
+                    ],
+                    backgroundColor: [
+                        '#e5e7eb', // gray-200
+                        '#93c5fd', // blue-300
+                        '#86efac'  // green-300
+                    ],
+                    borderColor: [
+                        '#d1d5db',
+                        '#60a5fa',
+                        '#4ade80'
+                    ],
+                    borderWidth: 1
+                }]
+            };
+
+            // Data for Type Chart
+            const typeCounts = allTasks.reduce((acc, task) => {
+                acc[task.type] = (acc[task.type] || 0) + 1;
+                return acc;
+            }, {});
+
+            const typeChartData = {
+                labels: ['Backend', 'Frontend', 'Operações'],
+                datasets: [{
+                    data: [
+                        typeCounts.backend || 0,
+                        typeCounts.frontend || 0,
+                        typeCounts.ops || 0
+                    ],
+                    backgroundColor: [
+                        '#60a5fa', // blue-400
+                        '#4ade80', // green-500
+                        '#facc15'  // yellow-400
+                    ],
+                     borderColor: [
+                        '#3b82f6',
+                        '#22c55e',
+                        '#eab308'
+                    ],
+                    borderWidth: 1
+                }]
+            };
+
+            // Render Status Chart
+            const statusCtx = document.getElementById('statusChart').getContext('2d');
+            if (window.myStatusChart) window.myStatusChart.destroy();
+            window.myStatusChart = new Chart(statusCtx, {
+                type: 'doughnut',
+                data: statusChartData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom' } }
+                }
+            });
+
+            // Render Type Chart
+            const typeCtx = document.getElementById('typeChart').getContext('2d');
+            if(window.myTypeChart) window.myTypeChart.destroy();
+            window.myTypeChart = new Chart(typeCtx, {
+                type: 'pie',
+                data: typeChartData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom' } }
+                }
+            });
+        };
+
 
         closeModalBtn.addEventListener('click', handleCloseModal);
         modal.addEventListener('click', (e) => {
@@ -429,7 +540,10 @@
         });
 
         // Initial render on page load
-        document.addEventListener('DOMContentLoaded', renderBoard);
+        document.addEventListener('DOMContentLoaded', () => {
+            renderBoard();
+            renderCharts();
+        });
     </script>
 </body>
 </html>
