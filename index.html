@@ -39,8 +39,8 @@
             "sprint": 1,
             "title": "Sprint 1: Fundação e Autenticação",
             "tasks": [
-                { "id": 101, "type": "backend", "title": "Criar projeto Supabase", "details": "Configurar um novo projeto na plataforma Supabase e obter as chaves de API.", "status": 0 },
-                { "id": 102, "type": "backend", "title": "Definir esquema inicial", "details": "Criar as tabelas `usuarios`, `proponentes` e `empresas` com as colunas básicas usando o editor de SQL.", "status": 0 },
+                { "id": 101, "type": "backend", "title": "Criar projeto Supabase", "details": "Configurar um novo projeto na plataforma Supabase e obter as chaves de API.", "status": 2 },
+                { "id": 102, "type": "backend", "title": "Definir esquema inicial", "details": "Criar as tabelas `usuarios`, `proponentes` e `empresas` com as colunas básicas usando o editor de SQL.", "status": 1 },
                 { "id": 103, "type": "backend", "title": "Configurar Autenticação", "details": "Habilitar autenticação por E-mail/Senha e personalizar o template do e-mail de confirmação.", "status": 0 },
                 { "id": 104, "type": "frontend", "title": "Iniciar projeto Flutter Web", "details": "Configurar um novo projeto Flutter e adicionar as dependências necessárias, como `supabase_flutter` e `go_router`.", "status": 0 },
                 { "id": 105, "type": "frontend", "title": "Construir telas de Auth", "details": "Desenvolver as UIs para as páginas de Login, Cadastro e 'Verifique seu E-mail'.", "status": 0 },
@@ -170,7 +170,7 @@
     </main>
     
     <div class="container mx-auto px-4 pb-12">
-        <!-- NEW: Charts Section -->
+        <!-- Charts Section -->
         <section class="my-12">
             <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Dashboard de Progresso</h2>
             <div class="grid md:grid-cols-2 gap-8">
@@ -283,6 +283,49 @@
                         <li class="flex items-start"><span class="text-teal-500 mr-3 mt-1">▶</span> Adotar serviços de Big Data (BigQuery) para análise preditiva.</li>
                         <li class="flex items-start"><span class="text-teal-500 mr-3 mt-1">▶</span> Estruturar uma equipe de desenvolvimento especializada.</li>
                     </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW: Budget Section -->
+        <section class="my-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Orçamento de Ferramentas e Assinaturas</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Figma -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-purple-500">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Figma (Design System)</h3>
+                    <p class="text-gray-600 mb-4">Plataforma para criar e manter o Design System, garantindo consistência visual e agilizando o desenvolvimento da UI.</p>
+                    <div class="text-lg font-semibold text-purple-600">Pagamento único ou Assinatura</div>
+                </div>
+                <!-- Domain -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-cyan-500">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Domínio Web (ex: hete.com.br)</h3>
+                    <p class="text-gray-600 mb-4">O endereço oficial da plataforma na internet. Essencial para a identidade da marca e acesso dos usuários.</p>
+                    <div class="text-lg font-semibold text-cyan-600">~R$ 40,00 / ano</div>
+                </div>
+                <!-- Supabase -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-green-500">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Assinatura Supabase Pro</h3>
+                    <p class="text-gray-600 mb-4">Serviço de backend que inclui banco de dados, autenticação e armazenamento. O plano Pro é recomendado para o lançamento.</p>
+                    <div class="text-lg font-semibold text-green-600">~US$ 25,00 / mês</div>
+                </div>
+                <!-- Hosting -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-black">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Hospedagem (Vercel/Netlify)</h3>
+                    <p class="text-gray-600 mb-4">Serviço para publicar e manter o site (frontend) no ar com alta performance e deploy contínuo integrado ao GitHub.</p>
+                    <div class="text-lg font-semibold text-gray-900">Plano gratuito (suficiente para o MVP)</div>
+                </div>
+                <!-- GitHub -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-gray-800">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">GitHub</h3>
+                    <p class="text-gray-600 mb-4">Plataforma para controle de versão do código-fonte. Essencial para segurança e organização do desenvolvimento.</p>
+                    <div class="text-lg font-semibold text-gray-900">Plano gratuito (suficiente para o MVP)</div>
+                </div>
+                 <!-- Google Workspace -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-red-500">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Google Workspace</h3>
+                    <p class="text-gray-600 mb-4">Para e-mail profissional (ex: contato@hete.com.br), armazenamento de documentos e colaboração com stakeholders.</p>
+                    <div class="text-lg font-semibold text-red-600">~R$ 28,00 / usuário / mês</div>
                 </div>
             </div>
         </section>
