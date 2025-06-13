@@ -31,6 +31,118 @@
 </head>
 <body class="bg-gray-100 text-gray-800">
 
+    <!-- DATA SOURCE: Edit the JSON below to update tasks and sprints -->
+    <script id="tasks-json" type="application/json">
+    [
+        {
+            "sprint": 1,
+            "title": "Sprint 1: Fundação e Autenticação",
+            "tasks": [
+                { "id": 101, "type": "backend", "title": "Criar projeto Supabase", "details": "Configurar um novo projeto na plataforma Supabase e obter as chaves de API.", "status": 0 },
+                { "id": 102, "type": "backend", "title": "Definir esquema inicial", "details": "Criar as tabelas `usuarios`, `proponentes` e `empresas` com as colunas básicas usando o editor de SQL.", "status": 0 },
+                { "id": 103, "type": "backend", "title": "Configurar Autenticação", "details": "Habilitar autenticação por E-mail/Senha e personalizar o template do e-mail de confirmação.", "status": 0 },
+                { "id": 104, "type": "frontend", "title": "Iniciar projeto Flutter Web", "details": "Configurar um novo projeto Flutter e adicionar as dependências necessárias, como `supabase_flutter` e `go_router`.", "status": 0 },
+                { "id": 105, "type": "frontend", "title": "Construir telas de Auth", "details": "Desenvolver as UIs para as páginas de Login, Cadastro e 'Verifique seu E-mail'.", "status": 0 },
+                { "id": 106, "type": "frontend", "title": "Integrar `supabase_flutter`", "details": "Implementar as funções de `signUp()`, `signIn()` e `signOut()` para conectar o frontend com a autenticação do Supabase.", "status": 0 },
+                { "id": 107, "type": "ops", "title": "Configurar repositório e CI/CD", "details": "Criar o repositório no GitHub e configurar GitHub Actions para deploy automático em um ambiente de teste.", "status": 0 }
+            ]
+        },
+        {
+            "sprint": 2,
+            "title": "Sprint 2: Cadastro Proponente",
+            "tasks": [
+                { "id": 201, "type": "frontend", "title": "UI do formulário de Proponente", "details": "Construir a UI do formulário de múltiplas etapas (wizard) para o cadastro completo do proponente, utilizando `flutter_form_builder` para facilitar.", "status": 0 },
+                { "id": 202, "type": "frontend", "title": "Implementar validação de campos", "details": "Adicionar validação em tempo real para todos os campos do formulário, como formato de CPF, CNPJ, e consulta de CEP.", "status": 0 },
+                { "id": 203, "type": "frontend", "title": "Página de Termos de Uso", "details": "Construir a página para aceite dos 'Termos de Uso' e 'Política de Privacidade', habilitando o botão de finalizar cadastro apenas após o aceite.", "status": 0 },
+                { "id": 204, "type": "backend", "title": "Salvar dados do proponente", "details": "Criar a lógica para, após a confirmação do e-mail, salvar os dados do formulário na tabela `proponentes`, associando-os ao `id` do usuário autenticado.", "status": 0 },
+                { "id": 205, "type": "backend", "title": "Definir RLS para Proponentes", "details": "Configurar Row Level Security na tabela `proponentes` para garantir que um usuário só possa ver e editar seu próprio perfil.", "status": 0 }
+            ]
+        },
+        {
+            "sprint": 3,
+            "title": "Sprint 3: Cadastro Empresa",
+            "tasks": [
+                { "id": 301, "type": "frontend", "title": "Construir formulário da Empresa", "details": "Desenvolver a UI e a lógica do formulário de cadastro para o usuário do tipo 'Empresa'.", "status": 0 },
+                { "id": 302, "type": "frontend", "title": "Estrutura dos Dashboards", "details": "Criar as páginas básicas de Dashboard para Proponentes e Empresas, que serão populadas nas próximas sprints.", "status": 0 },
+                { "id": 303, "type": "frontend", "title": "Implementar Rotas Protegidas", "details": "Usar `go_router` para proteger rotas. Usuários não autenticados devem ser redirecionados para a página de login.", "status": 0 },
+                { "id": 304, "type": "backend", "title": "Salvar dados da Empresa", "details": "Implementar a lógica no backend para salvar os dados do formulário na tabela `empresas`.", "status": 0 },
+                { "id": 305, "type": "backend", "title": "Definir RLS para Empresas", "details": "Configurar Row Level Security para a tabela `empresas`, seguindo a mesma lógica da tabela de proponentes.", "status": 0 }
+            ]
+        },
+        {
+            "sprint": 4,
+            "title": "Sprint 4: Criação de Projetos",
+            "tasks": [
+                { "id": 401, "type": "backend", "title": "Criar tabela `projetos`", "details": "Detalhar todas as colunas necessárias para um projeto (título, descrição, segmento, valor, etc.) e criar a tabela no Supabase.", "status": 0 },
+                { "id": 402, "type": "backend", "title": "Definir RLS para Projetos", "details": "Garantir que apenas usuários autenticados do tipo 'proponente' possam criar novos projetos.", "status": 0 },
+                { "id": 403, "type": "frontend", "title": "UI de 'Criar Novo Projeto'", "details": "Construir a tela e o formulário para a criação de um novo projeto, incluindo todos os campos definidos no backend.", "status": 0 },
+                { "id": 404, "type": "frontend", "title": "Salvar projeto no Supabase", "details": "Implementar a lógica para enviar os dados do formulário para o Supabase e associar o novo projeto ao proponente logado.", "status": 0 }
+            ]
+        },
+        {
+            "sprint": 5,
+            "title": "Sprint 5: Gerenciamento de Projetos",
+            "tasks": [
+                { "id": 501, "type": "frontend", "title": "Listar 'Meus Projetos'", "details": "No Dashboard do Proponente, criar a UI para exibir uma lista com todos os projetos criados por ele.", "status": 0 },
+                { "id": 502, "type": "frontend", "title": "Tela 'Editar Projeto'", "details": "Implementar a tela de edição, que deve carregar um formulário pré-populado com os dados do projeto selecionado.", "status": 0 },
+                { "id": 503, "type": "frontend", "title": "Função 'Excluir Projeto'", "details": "Adicionar a funcionalidade de exclusão, que deve incluir um diálogo de confirmação para evitar exclusões acidentais.", "status": 0 },
+                { "id": 504, "type": "backend", "title": "Query para buscar projetos", "details": "Criar a query no Supabase (usando RLS) para buscar apenas os projetos pertencentes ao usuário autenticado (`where proponente_id = auth.uid()`).", "status": 0 }
+            ]
+        },
+        {
+            "sprint": 6,
+            "title": "Sprint 6: Descoberta de Projetos",
+            "tasks": [
+                { "id": 601, "type": "frontend", "title": "Página Marketplace de Projetos", "details": "Construir a página principal que exibe todos os projetos disponíveis, com um layout em grid ou lista para fácil visualização.", "status": 0 },
+                { "id": 602, "type": "frontend", "title": "Criar componente `ProjectCard`", "details": "Desenvolver um widget reutilizável para exibir as informações resumidas de cada projeto (título, imagem, segmento, valor).", "status": 0 },
+                { "id": 603, "type": "frontend", "title": "Implementar filtros básicos", "details": "Adicionar controles na UI, como um dropdown ou chips, para permitir que as empresas filtrem projetos por segmento (cultural, esportivo, etc.).", "status": 0 },
+                { "id": 604, "type": "backend", "title": "RLS para visualização pública", "details": "Garantir que qualquer usuário autenticado (proponente ou empresa) tenha permissão de leitura (`SELECT`) em todos os projetos.", "status": 0 }
+            ]
+        },
+        {
+            "sprint": 7,
+            "title": "Sprint 7: Detalhes e Mídia",
+            "tasks": [
+                 { "id": 701, "type": "backend", "title": "Criar Bucket no Supabase Storage", "details": "Configurar um novo 'Bucket' para armazenar as mídias (imagens, PDFs) dos projetos.", "status": 0 },
+                { "id": 702, "type": "backend", "title": "Definir políticas do Storage", "details": "Proponente só pode fazer upload na pasta do seu próprio projeto.", "status": 0 },
+                { "id": 703, "type": "frontend", "title": "Página 'Detalhes do Projeto'", "details": "Construir a UI que exibe todas as informações de um projeto, incluindo textos longos e mídias.", "status": 0 },
+                { "id": 704, "type": "frontend", "title": "Implementar upload de arquivos", "details": "Na tela de edição de projeto, adicionar a funcionalidade para o proponente fazer upload de arquivos para o Supabase Storage.", "status": 0 }
+            ]
+        },
+        {
+            "sprint": 8,
+            "title": "Sprint 8: Interação Central",
+            "tasks": [
+                 { "id": 801, "type": "backend", "title": "Criar tabela `interesses`", "details": "Tabela que conecta um `empresa_id` a um `projeto_id`, registrando a manifestação de interesse.", "status": 0 },
+                { "id": 802, "type": "backend", "title": "Definir RLS para Interesses", "details": "Empresa só pode criar interesse em seu nome. Proponente só pode ver interesses nos seus projetos.", "status": 0 },
+                { "id": 803, "type": "frontend", "title": "Botão 'Tenho Interesse'", "details": "Adicionar o botão na página de detalhes do projeto e implementar a lógica para registrar o interesse.", "status": 0 },
+                { "id": 804, "type": "frontend", "title": "Listar empresas interessadas", "details": "No Dashboard do Proponente, exibir a lista de empresas que manifestaram interesse em seus projetos.", "status": 0 }
+            ]
+        },
+        {
+            "sprint": 9,
+            "title": "Sprint 9: Polimento e Responsividade",
+            "tasks": [
+                { "id": 901, "type": "frontend", "title": "Refinar UI/UX", "details": "Revisar toda a aplicação para garantir consistência visual, usabilidade e uma boa experiência do usuário.", "status": 0 },
+                { "id": 902, "type": "frontend", "title": "Garantir Responsividade", "details": "Testar e ajustar todas as telas principais para que o layout se adapte a diferentes tamanhos de tela, de desktop a mobile.", "status": 0 },
+                { "id": 903, "type": "frontend", "title": "Adicionar feedback visual", "details": "Implementar indicadores de carregamento (spinners) para operações assíncronas e snackbars/toasts para mensagens de sucesso ou erro.", "status": 0 },
+                { "id": 904, "type": "ops", "title": "Escrever testes de unidade", "details": "Focar nos testes para a lógica de negócio mais crítica para garantir a estabilidade do código.", "status": 0 }
+            ]
+        },
+        {
+            "sprint": 10,
+            "title": "Sprint 10: Lançamento",
+            "tasks": [
+                { "id": 1001, "type": "ops", "title": "Configurar projeto de produção", "details": "Criar o projeto final no Supabase e migrar o schema do banco de dados.", "status": 0 },
+                { "id": 1002, "type": "ops", "title": "Checklist de Lançamento", "details": "Configurar DNS, Analytics (Google Analytics), e monitoramento de erros (Sentry ou similar).", "status": 0 },
+                { "id": 1003, "type": "ops", "title": "Limpeza do banco de dados", "details": "Remover todos os dados de teste do banco de dados de produção.", "status": 0 },
+                { "id": 1004, "type": "ops", "title": "Deploy Final", "details": "Fazer o deploy da aplicação Flutter Web para um serviço de hospedagem como Vercel ou Firebase Hosting.", "status": 0 },
+                { "id": 1005, "type": "ops", "title": "Monitoramento pós-lançamento", "details": "Acompanhar ativamente a aplicação nas primeiras horas/dias para identificar e corrigir bugs rapidamente.", "status": 0 }
+            ]
+        }
+    ]
+    </script>
+
     <!-- Header -->
     <header class="bg-white shadow-sm p-4 sticky top-0 z-20">
         <div class="container mx-auto">
@@ -115,6 +227,45 @@
                 </div>
             </div>
         </section>
+
+        <!-- NEW: Next Steps Section -->
+        <section class="my-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Próximos Passos: Escalando a Hete Pós-MVP</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Column 1: Short Term -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-1">Fase 1 (Curto Prazo)</h3>
+                    <p class="text-sm font-semibold text-blue-600 mb-4">Expansão da Plataforma</p>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1">▶</span> Implementar busca e filtros avançados.</li>
+                        <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1">▶</span> Sistema de notificações em tempo real.</li>
+                        <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1">▶</span> Dashboards com analytics básicos para usuários.</li>
+                        <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1">▶</span> Integração de IA (Gemini) para otimização de textos.</li>
+                    </ul>
+                </div>
+                <!-- Column 2: Mid Term -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-1">Fase 2 (Médio Prazo)</h3>
+                    <p class="text-sm font-semibold text-purple-600 mb-4">Crescimento do Ecossistema</p>
+                     <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start"><span class="text-purple-500 mr-3 mt-1">▶</span> Lançamento de aplicativos mobile (iOS & Android).</li>
+                        <li class="flex items-start"><span class="text-purple-500 mr-3 mt-1">▶</span> Criação de uma API pública para integrações.</li>
+                        <li class="flex items-start"><span class="text-purple-500 mr-3 mt-1">▶</span> Ferramentas de colaboração entre proponentes e empresas.</li>
+                        <li class="flex items-start"><span class="text-purple-500 mr-3 mt-1">▶</span> Plano de assinatura (Premium) para features avançadas.</li>
+                    </ul>
+                </div>
+                <!-- Column 3: Long Term -->
+                 <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-1">Fase 3 (Longo Prazo)</h3>
+                    <p class="text-sm font-semibold text-teal-600 mb-4">Evolução da Arquitetura</p>
+                     <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start"><span class="text-teal-500 mr-3 mt-1">▶</span> Iniciar migração progressiva de lógicas complexas do Supabase para serviços dedicados no GCP (Cloud Run).</li>
+                        <li class="flex items-start"><span class="text-teal-500 mr-3 mt-1">▶</span> Adotar serviços de Big Data (BigQuery) para análise preditiva.</li>
+                        <li class="flex items-start"><span class="text-teal-500 mr-3 mt-1">▶</span> Estruturar uma equipe de desenvolvimento especializada.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
     </div>
 
     <!-- Modal -->
@@ -133,114 +284,10 @@
     </div>
 
     <script>
-        const tasksData = [
-            {
-                sprint: 1,
-                title: "Sprint 1: Fundação e Autenticação",
-                tasks: [
-                    { id: 101, type: 'backend', title: 'Criar projeto Supabase', details: 'Configurar um novo projeto na plataforma Supabase e obter as chaves de API.', status: 'Pendente' },
-                    { id: 102, type: 'backend', title: 'Definir esquema inicial', details: 'Criar as tabelas `usuarios`, `proponentes` e `empresas` com as colunas básicas usando o editor de SQL.', status: 'Pendente' },
-                    { id: 103, type: 'backend', title: 'Configurar Autenticação', details: 'Habilitar autenticação por E-mail/Senha e personalizar o template do e-mail de confirmação.', status: 'Pendente' },
-                    { id: 104, type: 'frontend', title: 'Iniciar projeto Flutter Web', details: 'Configurar um novo projeto Flutter e adicionar as dependências necessárias, como `supabase_flutter` e `go_router`.', status: 'Pendente' },
-                    { id: 105, type: 'frontend', title: 'Construir telas de Auth', details: 'Desenvolver as UIs para as páginas de Login, Cadastro e "Verifique seu E-mail".', status: 'Pendente' },
-                    { id: 106, type: 'frontend', title: 'Integrar `supabase_flutter`', details: 'Implementar as funções de `signUp()`, `signIn()` e `signOut()` para conectar o frontend com a autenticação do Supabase.', status: 'Pendente' },
-                    { id: 107, type: 'ops', title: 'Configurar repositório e CI/CD', details: 'Criar o repositório no GitHub e configurar GitHub Actions para deploy automático em um ambiente de teste.', status: 'Pendente' },
-                ]
-            },
-            {
-                sprint: 2,
-                title: "Sprint 2: Cadastro Proponente",
-                tasks: [
-                    { id: 201, type: 'frontend', title: 'UI do formulário de Proponente', details: 'Construir a UI do formulário de múltiplas etapas (wizard) para o cadastro completo do proponente, utilizando `flutter_form_builder` para facilitar.', status: 'Pendente' },
-                    { id: 202, type: 'frontend', title: 'Implementar validação de campos', details: 'Adicionar validação em tempo real para todos os campos do formulário, como formato de CPF, CNPJ, e consulta de CEP.', status: 'Pendente' },
-                    { id: 203, type: 'frontend', title: 'Página de Termos de Uso', details: 'Construir a página para aceite dos "Termos de Uso" e "Política de Privacidade", habilitando o botão de finalizar cadastro apenas após o aceite.', status: 'Pendente' },
-                    { id: 204, type: 'backend', title: 'Salvar dados do proponente', details: 'Criar a lógica para, após a confirmação do e-mail, salvar os dados do formulário na tabela `proponentes`, associando-os ao `id` do usuário autenticado.', status: 'Pendente' },
-                    { id: 205, type: 'backend', title: 'Definir RLS para Proponentes', details: 'Configurar Row Level Security na tabela `proponentes` para garantir que um usuário só possa ver e editar seu próprio perfil.', status: 'Pendente' },
-                ]
-            },
-             {
-                sprint: 3,
-                title: "Sprint 3: Cadastro Empresa",
-                tasks: [
-                    { id: 301, type: 'frontend', title: 'Construir formulário da Empresa', details: 'Desenvolver a UI e a lógica do formulário de cadastro para o usuário do tipo "Empresa".', status: 'Pendente' },
-                    { id: 302, type: 'frontend', title: 'Estrutura dos Dashboards', details: 'Criar as páginas básicas de Dashboard para Proponentes e Empresas, que serão populadas nas próximas sprints.', status: 'Pendente' },
-                    { id: 303, type: 'frontend', title: 'Implementar Rotas Protegidas', details: 'Usar `go_router` para proteger rotas. Usuários não autenticados devem ser redirecionados para a página de login.', status: 'Pendente' },
-                    { id: 304, type: 'backend', title: 'Salvar dados da Empresa', details: 'Implementar a lógica no backend para salvar os dados do formulário na tabela `empresas`.', status: 'Pendente' },
-                    { id: 305, type: 'backend', title: 'Definir RLS para Empresas', details: 'Configurar Row Level Security para a tabela `empresas`, seguindo a mesma lógica da tabela de proponentes.', status: 'Pendente' },
-                ]
-            },
-            {
-                sprint: 4,
-                title: "Sprint 4: Criação de Projetos",
-                tasks: [
-                    { id: 401, type: 'backend', title: 'Criar tabela `projetos`', details: 'Detalhar todas as colunas necessárias para um projeto (título, descrição, segmento, valor, etc.) e criar a tabela no Supabase.', status: 'Pendente' },
-                    { id: 402, type: 'backend', title: 'Definir RLS para Projetos', details: 'Garantir que apenas usuários autenticados do tipo "proponente" possam criar novos projetos.', status: 'Pendente' },
-                    { id: 403, type: 'frontend', title: 'UI de "Criar Novo Projeto"', details: 'Construir a tela e o formulário para a criação de um novo projeto, incluindo todos os campos definidos no backend.', status: 'Pendente' },
-                    { id: 404, type: 'frontend', title: 'Salvar projeto no Supabase', details: 'Implementar a lógica para enviar os dados do formulário para o Supabase e associar o novo projeto ao proponente logado.', status: 'Pendente' },
-                ]
-            },
-            {
-                sprint: 5,
-                title: "Sprint 5: Gerenciamento de Projetos",
-                tasks: [
-                    { id: 501, type: 'frontend', title: 'Listar "Meus Projetos"', details: 'No Dashboard do Proponente, criar a UI para exibir uma lista com todos os projetos criados por ele.', status: 'Pendente' },
-                    { id: 502, type: 'frontend', title: 'Tela "Editar Projeto"', details: 'Implementar a tela de edição, que deve carregar um formulário pré-populado com os dados do projeto selecionado.', status: 'Pendente' },
-                    { id: 503, type: 'frontend', title: 'Função "Excluir Projeto"', details: 'Adicionar a funcionalidade de exclusão, que deve incluir um diálogo de confirmação para evitar exclusões acidentais.', status: 'Pendente' },
-                    { id: 504, type: 'backend', title: 'Query para buscar projetos', details: 'Criar a query no Supabase (usando RLS) para buscar apenas os projetos pertencentes ao usuário autenticado (`where proponente_id = auth.uid()`).', status: 'Pendente' },
-                ]
-            },
-            {
-                sprint: 6,
-                title: "Sprint 6: Descoberta de Projetos",
-                tasks: [
-                    { id: 601, type: 'frontend', title: 'Página Marketplace de Projetos', details: 'Construir a página principal que exibe todos os projetos disponíveis, com um layout em grid ou lista para fácil visualização.', status: 'Pendente' },
-                    { id: 602, type: 'frontend', title: 'Criar componente `ProjectCard`', details: 'Desenvolver um widget reutilizável para exibir as informações resumidas de cada projeto (título, imagem, segmento, valor).', status: 'Pendente' },
-                    { id: 603, type: 'frontend', title: 'Implementar filtros básicos', details: 'Adicionar controles na UI, como um dropdown ou chips, para permitir que as empresas filtrem projetos por segmento (cultural, esportivo, etc.).', status: 'Pendente' },
-                    { id: 604, type: 'backend', title: 'RLS para visualização pública', details: 'Garantir que qualquer usuário autenticado (proponente ou empresa) tenha permissão de leitura (`SELECT`) em todos os projetos.', status: 'Pendente' },
-                ]
-            },
-            {
-                sprint: 7,
-                title: "Sprint 7: Detalhes e Mídia",
-                tasks: [
-                     { id: 701, type: 'backend', title: 'Criar Bucket no Supabase Storage', details: 'Configurar um novo "Bucket" para armazenar as mídias (imagens, PDFs) dos projetos.', status: 'Pendente' },
-                    { id: 702, type: 'backend', title: 'Definir políticas do Storage', details: 'Proponente só pode fazer upload na pasta do seu próprio projeto.', status: 'Pendente' },
-                    { id: 703, type: 'frontend', title: 'Página "Detalhes do Projeto"', details: 'Construir a UI que exibe todas as informações de um projeto, incluindo textos longos e mídias.', status: 'Pendente' },
-                    { id: 704, type: 'frontend', title: 'Implementar upload de arquivos', details: 'Na tela de edição de projeto, adicionar a funcionalidade para o proponente fazer upload de arquivos para o Supabase Storage.', status: 'Pendente' },
-                ]
-            },
-            {
-                sprint: 8,
-                title: "Sprint 8: Interação Central",
-                tasks: [
-                     { id: 801, type: 'backend', title: 'Criar tabela `interesses`', details: 'Tabela que conecta um `empresa_id` a um `projeto_id`, registrando a manifestação de interesse.', status: 'Pendente' },
-                    { id: 802, type: 'backend', title: 'Definir RLS para Interesses', details: 'Empresa só pode criar interesse em seu nome. Proponente só pode ver interesses nos seus projetos.', status: 'Pendente' },
-                    { id: 803, type: 'frontend', title: 'Botão "Tenho Interesse"', details: 'Adicionar o botão na página de detalhes do projeto e implementar a lógica para registrar o interesse.', status: 'Pendente' },
-                    { id: 804, type: 'frontend', title: 'Listar empresas interessadas', details: 'No Dashboard do Proponente, exibir a lista de empresas que manifestaram interesse em seus projetos.', status: 'Pendente' },
-                ]
-            },
-            {
-                sprint: 9,
-                title: "Sprint 9: Polimento e Responsividade",
-                tasks: [
-                    { id: 901, type: 'frontend', title: 'Refinar UI/UX', details: 'Revisar toda a aplicação para garantir consistência visual, usabilidade e uma boa experiência do usuário.', status: 'Pendente' },
-                    { id: 902, type: 'frontend', title: 'Garantir Responsividade', details: 'Testar e ajustar todas as telas principais para que o layout se adapte a diferentes tamanhos de tela, de desktop a mobile.', status: 'Pendente' },
-                    { id: 903, type: 'frontend', title: 'Adicionar feedback visual', details: 'Implementar indicadores de carregamento (spinners) para operações assíncronas e snackbars/toasts para mensagens de sucesso ou erro.', status: 'Pendente' },
-                    { id: 904, type: 'ops', title: 'Escrever testes de unidade', details: 'Focar nos testes para a lógica de negócio mais crítica para garantir a estabilidade do código.', status: 'Pendente' },
-                ]
-            },
-            {
-                sprint: 10,
-                title: "Sprint 10: Lançamento",
-                tasks: [
-                    { id: 1001, type: 'ops', title: 'Configurar projeto de produção', details: 'Criar o projeto final no Supabase e migrar o schema do banco de dados.', status: 'Pendente' },
-                    { id: 1002, type: 'ops', title: 'Checklist de Lançamento', details: 'Configurar DNS, Analytics (Google Analytics), e monitoramento de erros (Sentry ou similar).', status: 'Pendente' },
-                    { id: 1003, type: 'ops', title: 'Limpeza do banco de dados', details: 'Remover todos os dados de teste do banco de dados de produção.', status: 'Pendente' },
-                    { id: 1004, type: 'ops', title: 'Deploy Final', details: 'Fazer o deploy da aplicação Flutter Web para um serviço de hospedagem como Vercel ou Firebase Hosting.', status: 'Pendente' },
-                    { id: 1005, type: 'ops', title: 'Monitoramento pós-lançamento', details: 'Acompanhar ativamente a aplicação nas primeiras horas/dias para identificar e corrigir bugs rapidamente.', status: 'Pendente' },
-                ]
-            },
-        ];
+        // --- APP LOGIC ---
+
+        // Load data from the JSON script tag
+        const tasksData = JSON.parse(document.getElementById('tasks-json').textContent);
 
         const board = document.getElementById('kanban-board');
         const modal = document.getElementById('task-modal');
@@ -260,6 +307,8 @@
             ops: 'border-yellow-500'
         };
        
+        // Status enum mapping
+        // 0: Pendente, 1: Em andamento, 2: Concluido
         const statusOrder = ['Pendente', 'Em andamento', 'Concluido'];
         const statusClasses = {
             'Pendente': 'bg-gray-200 text-gray-800',
@@ -280,22 +329,26 @@
                         <span class="text-sm text-gray-500 font-medium">${sprintData.tasks.length} tasks</span>
                     </div>
                     <div class="task-list p-4 space-y-3 overflow-y-auto h-[calc(100vh-240px)]">
-                        ${sprintData.tasks.map(task => `
-                            <div id="task-${task.id}" class="task-card bg-white p-3 rounded-md shadow-sm border-l-4 ${typeBorders[task.type]} cursor-pointer" data-task-id="${task.id}">
-                                <div class="flex justify-between items-start">
-                                    <p class="font-semibold text-gray-800 pr-2">
-                                        <span class="text-xs font-mono text-gray-400 mr-1">#${task.id}</span>
-                                        ${task.title}
-                                    </p>
-                                    <span class="w-3 h-3 rounded-full ${typeColors[task.type]} flex-shrink-0 mt-1"></span>
+                        ${sprintData.tasks.map(task => {
+                            const statusText = statusOrder[task.status];
+                            const statusClass = statusClasses[statusText];
+                            return `
+                                <div id="task-${task.id}" class="task-card bg-white p-3 rounded-md shadow-sm border-l-4 ${typeBorders[task.type]} cursor-pointer" data-task-id="${task.id}">
+                                    <div class="flex justify-between items-start">
+                                        <p class="font-semibold text-gray-800 pr-2">
+                                            <span class="text-xs font-mono text-gray-400 mr-1">#${task.id}</span>
+                                            ${task.title}
+                                        </p>
+                                        <span class="w-3 h-3 rounded-full ${typeColors[task.type]} flex-shrink-0 mt-1"></span>
+                                    </div>
+                                    <div class="mt-3">
+                                        <span class="status-badge text-xs font-medium px-2.5 py-1 rounded-full ${statusClass}" data-task-id="${task.id}">
+                                            ${statusText}
+                                        </span>
+                                    </div>
                                 </div>
-                                <div class="mt-3">
-                                    <span class="status-badge text-xs font-medium px-2.5 py-1 rounded-full ${statusClasses[task.status]}" data-task-id="${task.id}">
-                                        ${task.status}
-                                    </span>
-                                </div>
-                            </div>
-                        `).join('')}
+                            `;
+                        }).join('')}
                     </div>
                 `;
                 board.appendChild(column);
@@ -322,25 +375,32 @@
         
         const handleChangeStatus = (taskId) => {
             let taskToUpdate;
-            tasksData.forEach(sprint => {
+            for (const sprint of tasksData) {
                 const found = sprint.tasks.find(t => t.id == taskId);
-                if (found) taskToUpdate = found;
-            });
+                if (found) {
+                    taskToUpdate = found;
+                    break;
+                }
+            }
 
             if (taskToUpdate) {
-                const currentIndex = statusOrder.indexOf(taskToUpdate.status);
-                const nextIndex = (currentIndex + 1) % statusOrder.length;
-                taskToUpdate.status = statusOrder[nextIndex];
+                // Cycle through statuses: 0 -> 1 -> 2 -> 0
+                taskToUpdate.status = (taskToUpdate.status + 1) % statusOrder.length;
+                // NOTE: To persist these changes, you would save the 'tasksData' object
+                // back to a server or local storage here. For this static page, we just re-render.
                 renderBoard();
             }
         };
 
         const handleOpenModal = (taskId) => {
             let task;
-            tasksData.forEach(sprint => {
+            for (const sprint of tasksData) {
                 const foundTask = sprint.tasks.find(t => t.id == taskId);
-                if (foundTask) task = foundTask;
-            });
+                if (foundTask) {
+                    task = foundTask;
+                    break;
+                }
+            }
 
             if (task) {
                 modalTitle.textContent = task.title;
@@ -368,8 +428,8 @@
             }
         });
 
-        // Initial render
-        renderBoard();
+        // Initial render on page load
+        document.addEventListener('DOMContentLoaded', renderBoard);
     </script>
 </body>
 </html>
