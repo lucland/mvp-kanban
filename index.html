@@ -41,10 +41,10 @@
             "tasks": [
                 { "id": 101, "type": "backend", "title": "Criar projeto Supabase", "details": "Configurar um novo projeto na plataforma Supabase e obter as chaves de API.", "status": 2 },
                 { "id": 102, "type": "backend", "title": "Definir esquema inicial", "details": "Criar as tabelas `usuarios`, `proponentes` e `empresas` com as colunas básicas usando o editor de SQL.", "status": 2 },
-                { "id": 103, "type": "backend", "title": "Configurar Autenticação", "details": "Habilitar autenticação por E-mail/Senha e personalizar o template do e-mail de confirmação.", "status": 1 },
+                { "id": 103, "type": "backend", "title": "Configurar Autenticação", "details": "Habilitar autenticação por E-mail/Senha e personalizar o template do e-mail de confirmação.", "status": 2 },
                 { "id": 104, "type": "frontend", "title": "Iniciar projeto Flutter Web", "details": "Configurar um novo projeto Flutter e adicionar as dependências necessárias, como `supabase_flutter` e `go_router`.", "status": 2 },
                 { "id": 105, "type": "frontend", "title": "Construir telas de Auth", "details": "Desenvolver as UIs para as páginas de Login, Cadastro e 'Verifique seu E-mail'.", "status": 2 },
-                { "id": 106, "type": "frontend", "title": "Integrar `supabase_flutter`", "details": "Implementar as funções de `signUp()`, `signIn()` e `signOut()` para conectar o frontend com a autenticação do Supabase.", "status": 1 },
+                { "id": 106, "type": "frontend", "title": "Integrar `supabase_flutter`", "details": "Implementar as funções de `signUp()`, `signIn()` e `signOut()` para conectar o frontend com a autenticação do Supabase.", "status": 2 },
                 { "id": 107, "type": "ops", "title": "Configurar repositório e CI/CD", "details": "Criar o repositório no GitHub e configurar GitHub Actions para deploy automático em um ambiente de teste.", "status": 2 }
             ]
         },
@@ -53,31 +53,31 @@
             "title": "Sprint 2: Cadastro Proponente",
             "tasks": [
                 { "id": 201, "type": "frontend", "title": "UI do formulário de Proponente", "details": "Construir a UI do formulário de múltiplas etapas (wizard) para o cadastro completo do proponente, utilizando `flutter_form_builder` para facilitar.", "status": 2 },
-                { "id": 202, "type": "frontend", "title": "Implementar validação de campos", "details": "Adicionar validação em tempo real para todos os campos do formulário, como formato de CPF, CNPJ, e consulta de CEP.", "status": 1 },
+                { "id": 202, "type": "frontend", "title": "Implementar validação de campos", "details": "Adicionar validação em tempo real para todos os campos do formulário, como formato de CPF, CNPJ, e consulta de CEP.", "status": 2 },
                 { "id": 203, "type": "frontend", "title": "Página de Termos de Uso", "details": "Construir a página para aceite dos 'Termos de Uso' e 'Política de Privacidade', habilitando o botão de finalizar cadastro apenas após o aceite.", "status": 0 },
-                { "id": 204, "type": "backend", "title": "Salvar dados do proponente", "details": "Criar a lógica para, após a confirmação do e-mail, salvar os dados do formulário na tabela `proponentes`, associando-os ao `id` do usuário autenticado.", "status": 0 },
-                { "id": 205, "type": "backend", "title": "Definir RLS para Proponentes", "details": "Configurar Row Level Security na tabela `proponentes` para garantir que um usuário só possa ver e editar seu próprio perfil.", "status": 0 }
+                { "id": 204, "type": "backend", "title": "Salvar dados do proponente", "details": "Criar a lógica para, após a confirmação do e-mail, salvar os dados do formulário na tabela `proponentes`, associando-os ao `id` do usuário autenticado.", "status": 2 },
+                { "id": 205, "type": "backend", "title": "Definir RLS para Proponentes", "details": "Configurar Row Level Security na tabela `proponentes` para garantir que um usuário só possa ver e editar seu próprio perfil.", "status": 2 }
             ]
         },
         {
             "sprint": 3,
             "title": "Sprint 3: Cadastro Empresa",
             "tasks": [
-                { "id": 301, "type": "frontend", "title": "Construir formulário da Empresa", "details": "Desenvolver a UI e a lógica do formulário de cadastro para o usuário do tipo 'Empresa'.", "status": 0 },
-                { "id": 302, "type": "frontend", "title": "Estrutura dos Dashboards", "details": "Criar as páginas básicas de Dashboard para Proponentes e Empresas, que serão populadas nas próximas sprints.", "status": 0 },
-                { "id": 303, "type": "frontend", "title": "Implementar Rotas Protegidas", "details": "Usar `go_router` para proteger rotas. Usuários não autenticados devem ser redirecionados para a página de login.", "status": 0 },
-                { "id": 304, "type": "backend", "title": "Salvar dados da Empresa", "details": "Implementar a lógica no backend para salvar os dados do formulário na tabela `empresas`.", "status": 0 },
-                { "id": 305, "type": "backend", "title": "Definir RLS para Empresas", "details": "Configurar Row Level Security para a tabela `empresas`, seguindo a mesma lógica da tabela de proponentes.", "status": 0 }
+                { "id": 301, "type": "frontend", "title": "Construir formulário da Empresa", "details": "Desenvolver a UI e a lógica do formulário de cadastro para o usuário do tipo 'Empresa'.", "status": 2 },
+                { "id": 302, "type": "frontend", "title": "Estrutura dos Dashboards", "details": "Criar as páginas básicas de Dashboard para Proponentes e Empresas, que serão populadas nas próximas sprints.", "status": 2 },
+                { "id": 303, "type": "frontend", "title": "Implementar Rotas Protegidas", "details": "Usar `go_router` para proteger rotas. Usuários não autenticados devem ser redirecionados para a página de login.", "status": 2 },
+                { "id": 304, "type": "backend", "title": "Salvar dados da Empresa", "details": "Implementar a lógica no backend para salvar os dados do formulário na tabela `empresas`.", "status": 2 },
+                { "id": 305, "type": "backend", "title": "Definir RLS para Empresas", "details": "Configurar Row Level Security para a tabela `empresas`, seguindo a mesma lógica da tabela de proponentes.", "status": 2 }
             ]
         },
         {
             "sprint": 4,
             "title": "Sprint 4: Criação de Projetos",
             "tasks": [
-                { "id": 401, "type": "backend", "title": "Criar tabela `projetos`", "details": "Detalhar todas as colunas necessárias para um projeto (título, descrição, segmento, valor, etc.) e criar a tabela no Supabase.", "status": 0 },
-                { "id": 402, "type": "backend", "title": "Definir RLS para Projetos", "details": "Garantir que apenas usuários autenticados do tipo 'proponente' possam criar novos projetos.", "status": 0 },
-                { "id": 403, "type": "frontend", "title": "UI de 'Criar Novo Projeto'", "details": "Construir a tela e o formulário para a criação de um novo projeto, incluindo todos os campos definidos no backend.", "status": 0 },
-                { "id": 404, "type": "frontend", "title": "Salvar projeto no Supabase", "details": "Implementar a lógica para enviar os dados do formulário para o Supabase e associar o novo projeto ao proponente logado.", "status": 0 }
+                { "id": 401, "type": "backend", "title": "Criar tabela `projetos`", "details": "Detalhar todas as colunas necessárias para um projeto (título, descrição, segmento, valor, etc.) e criar a tabela no Supabase.", "status": 2 },
+                { "id": 402, "type": "backend", "title": "Definir RLS para Projetos", "details": "Garantir que apenas usuários autenticados do tipo 'proponente' possam criar novos projetos.", "status": 2 },
+                { "id": 403, "type": "frontend", "title": "UI de 'Criar Novo Projeto'", "details": "Construir a tela e o formulário para a criação de um novo projeto, incluindo todos os campos definidos no backend.", "status": 2 },
+                { "id": 404, "type": "frontend", "title": "Salvar projeto no Supabase", "details": "Implementar a lógica para enviar os dados do formulário para o Supabase e associar o novo projeto ao proponente logado.", "status": 2 }
             ]
         },
         {
@@ -87,7 +87,9 @@
                 { "id": 501, "type": "frontend", "title": "Listar 'Meus Projetos'", "details": "No Dashboard do Proponente, criar a UI para exibir uma lista com todos os projetos criados por ele.", "status": 0 },
                 { "id": 502, "type": "frontend", "title": "Tela 'Editar Projeto'", "details": "Implementar a tela de edição, que deve carregar um formulário pré-populado com os dados do projeto selecionado.", "status": 0 },
                 { "id": 503, "type": "frontend", "title": "Função 'Excluir Projeto'", "details": "Adicionar a funcionalidade de exclusão, que deve incluir um diálogo de confirmação para evitar exclusões acidentais.", "status": 0 },
-                { "id": 504, "type": "backend", "title": "Query para buscar projetos", "details": "Criar a query no Supabase (usando RLS) para buscar apenas os projetos pertencentes ao usuário autenticado (`where proponente_id = auth.uid()`).", "status": 0 }
+                { "id": 504, "type": "backend", "title": "Query para buscar projetos", "details": "Criar a query no Supabase (usando RLS) para buscar apenas os projetos pertencentes ao usuário autenticado (`where proponente_id = auth.uid()`).", "status": 0 },
+                { "id": 103, "type": "backend", "title": "Ativar confirmação de Email", "details": "Personalizar o template do e-mail de confirmação.", "status": 0 },
+                { "id": 202, "type": "frontend", "title": "Implementar consulta automatica de CEP", "details": "Adicionar consulta de CEP para validar e popular campos de endereço automaticamente de acordo com o cep.", "status": 0 }
             ]
         },
         {
